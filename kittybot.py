@@ -92,7 +92,6 @@ def wake_up(update, context):
     now = moscow_moment.strftime('%H:%M')
     chat = update.effective_chat
     name = update.message.chat.first_name
-    print(update)
     button = ReplyKeyboardMarkup([['/cats', '/weather'], 
                                   ['Космос', '/start']], resize_keyboard=True)
     weath = 'http://api.openweathermap.org/data/2.5/weather?id=498817&appid=41da95281bee035d84f9fbc6b12088c1'
@@ -124,7 +123,7 @@ def wake_up(update, context):
 
 
 def main():
-    updater = Updater(token=secret_token)
+    updater = Updater(secret_token)
     updater.dispatcher.add_handler(CommandHandler('start', wake_up))
     updater.dispatcher.add_handler(CommandHandler('cats', new_cat))
     updater.dispatcher.add_handler(CommandHandler('weather', weather))
