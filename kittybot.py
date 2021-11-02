@@ -112,11 +112,11 @@ def wake_up(update, context):
     context.bot.send_photo(chat.id, get_new_image())
     context.bot.send_message(
         chat_id=chat.id,
-        text='Хочешь получить больше котиков, нажми "Котики"',
+        text='Хочешь получить больше котиков, нажми "/cats"',
         reply_markup=button)
     context.bot.send_message(
         chat_id=chat.id,
-        text='Хочешь узнать темепературу воздуха, нажми "Погода"',
+        text='Хочешь узнать темепературу воздуха, нажми "/weather"',
         reply_markup=button)
     context.bot.send_message(
         chat_id=chat.id,
