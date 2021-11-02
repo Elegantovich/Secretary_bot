@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-secret_token = os.getenv('TOKEN')
+token = os.getenv('TELEGRAM_TOKEN')
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -65,6 +65,8 @@ def nasa(update, context):
     response = requests.get(nasa_url)
     response = response.json()
     author = response.get('copyright')
+    if not author:
+        author = 'Неизвестен'
     name = response.get('title')
     description = response.get('explanation')
     context.bot.send_message(chat.id, text=f'Автор "{author}", название "{name}"')
@@ -85,6 +87,7 @@ def weather(update, context):
 
 
 def wake_up(update, context):
+    print(update)
     now = dt.datetime.utcnow()
     period = dt.timedelta(hours=3)
     moscow_moment = now + period
@@ -123,7 +126,7 @@ def wake_up(update, context):
 
 
 def main():
-    updater = Updater(secret_token)
+    updater = Updater(token)
     updater.dispatcher.add_handler(CommandHandler('start', wake_up))
     updater.dispatcher.add_handler(CommandHandler('cats', new_cat))
     updater.dispatcher.add_handler(CommandHandler('weather', weather))
