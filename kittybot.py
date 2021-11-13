@@ -22,6 +22,7 @@ logging.basicConfig(
 
 
 def get_time(hours):
+    "Приветствие в зависимости от часа."
     if hours in range(6, 12):
         return 'Доброе утро'
     elif hours in range(12, 18):
@@ -32,6 +33,7 @@ def get_time(hours):
 
 
 def get_new_image():
+    "Получаем АПИ картирнки любимцев."
     try:
         response = requests.get(url_data['cat'])
     except Exception as error:
@@ -44,6 +46,7 @@ def get_new_image():
 
 
 def conv(weather):
+    "Окончание слова 'градус'."
     es = ['', 'а', 'ов']
     if weather >= 11 and weather <= 19:
         s = es[2]
@@ -64,6 +67,7 @@ def get_new_cat(update, context):
 
 
 def weather(update, context):
+    "Получаем подробный прогноз погоды."
     chat = update.effective_chat
     response = requests.get(url_data['weather'], params={'units': 'metric'})
     response = response.json()
@@ -76,6 +80,7 @@ def weather(update, context):
 
 
 def wake_up(update, context):
+    "Функционал при старте работы"
     now = dt.datetime.utcnow()
     period = dt.timedelta(hours=3)
     moscow_moment = now + period
