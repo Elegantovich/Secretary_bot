@@ -4,6 +4,11 @@
 ### Технологии
 Python 3.7
 ### Запуск проекта dev-режиме
+- Установите и запустите виртуальное окружение
+```
+python -m venv venv 
+source venv/Scripts/activate
+``` 
 - Установите зависимости из файла requirements.txt
 ```
 pip install -r requirements.txt
